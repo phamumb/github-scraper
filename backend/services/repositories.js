@@ -13,19 +13,13 @@ function getAllRepositories(page = 1) {
 }
 
 function getAllRepositoriesByUsername(username = "") {
-  const data = db.query(`SELECT * FROM repository WHERE username = ?`, [username]);
-  const meta = {username}
-  return {
-    data,
-    meta
-  }
+  const data = db.query(`SELECT * FROM repository WHERE username like ?`, [username]);
+  return data
 }
 
 function getAllUsers() {
-  const data = db.query(`SELECT DISTINCT username FROM repository`, null);
-  return {
-    data
-  }
+  const data = db.query(`SELECT DISTINCT username FROM repository`, []);
+  return data
 }
 
 module.exports = {
