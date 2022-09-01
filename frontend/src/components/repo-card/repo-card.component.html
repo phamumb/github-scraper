@@ -1,10 +1,11 @@
-<div class="card m-2 shadow-sm rounded">
-  <div class="card-header">
-    {{repo.repository_name}}
-  </div>
+<div class="card m-2 shadow border border-white">
   <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <h4 class="card-title">{{repo.repository_name}} <fa-icon [icon]="faGithub"></fa-icon></h4>
+    <p class="card-text">{{repo.description}}</p>
+
+    <span class="badge" *ngIf="repo.language" [ngClass]="[getLanguageColor(repo.language)]">{{repo.language}}</span>
+    <span *ngIf="repo.stars" class="mx-2"><fa-icon [icon]="faStars" ></fa-icon> {{repo.stars}}</span>
+    <span *ngIf="repo.forks" class="mx-2"><fa-icon [icon]="faFork"></fa-icon> {{repo.forks}}</span>
+    <span class="text-muted" class="mx-2">Updated on {{repo.last_update}}</span>
   </div>
 </div>

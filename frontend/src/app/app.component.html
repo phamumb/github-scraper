@@ -1,14 +1,12 @@
 <div class="contaier-fluid m-2">
   <div class="row">
     <div class="col-md-4">
-      <label for="exampleFormControlInput1" class="form-label">Github's username</label>
       <select class="form-select" aria-label="Default select example" (change)="onUserChange($event.target)" label="Username">
-        <option [value]="" selected>Open this select menu</option>
+        <option class="text-muted" [value]="" selected>Select a Github's username</option>
         <option [value]="user.username" *ngFor="let user of users$ | async">{{user.username}}</option>
       </select>
     </div>
     <div class="col-md-8">
-      <label for="exampleFormControlInput1" class="form-label">Search</label>
       <input class="form-control" (input)="onTextSearch($event.target)" placeholder="Search text">
     </div>
   </div>
