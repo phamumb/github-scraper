@@ -13,11 +13,7 @@ default_db_path = "../db/github.db"
 config_file = "config.yaml"
 
 def create_connection(db_file_path):
-    try:
-        con = sqlite3.connect(db_file_path)
-    except:
-        print("Can't connect to database")
-    return con
+    return sqlite3.connect(db_file_path)
 
 def scrape_github_repos(username):
     pageNum = 1
