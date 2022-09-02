@@ -1,2 +1,2 @@
-<app-forms-bar [users]="users$ | async" (onUserChange)="onUserChange($event)"></app-forms-bar>
+<app-forms-bar [users]="users$ | async" (onUserChange)="onUserChange($event)" (onSearchTextChange)="list.searchText($event)"></app-forms-bar>
 <app-repository-list [repositories]="repositories$ | async" #list></app-repository-list>

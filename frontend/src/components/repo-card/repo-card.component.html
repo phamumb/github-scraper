@@ -1,12 +1,33 @@
-<div class="card m-2 shadow border-light" (click)="cardClick()">
+<div
+  class="card m-2 border-light glow"
+  style="{{boxShadowStyle}}"
+  (mouseenter)="mouseenter()"
+  (mouseleave)="mouseleave()"
+  (click)="cardClick()">
   <div class="card-body">
-    <h4 class="card-title"><fa-icon [icon]="faGithub"></fa-icon> {{repo.repository_name}} </h4>
-    <p class="card-text" *ngIf="repo.description">{{repo.description}}</p>
+    <h4 class="card-title">
+      <fa-icon [icon]="faGithub"></fa-icon>
+      {{ repo.repository_name }}
+    </h4>
+    <p class="card-text" *ngIf="repo.description">{{ repo.description }}</p>
     <div class="position-absolute bottom-0 start-0 m-3">
-      <span class="badge" *ngIf="repo.language" [ngClass]="[getLanguageColor(repo.language)]">{{repo.language}}</span>
-      <span *ngIf="repo.stars" class="mx-2"><fa-icon [icon]="faStars" ></fa-icon> {{repo.stars}}</span>
-      <span *ngIf="repo.forks" class="mx-2"><fa-icon [icon]="faFork"></fa-icon> {{repo.forks}}</span>
-      <span class="text-muted" class="mx-2">Updated on {{repo.last_update}}</span>
+      <span
+        class="badge"
+        *ngIf="repo.language"
+        style="background-color: {{ getLanguageColor(repo.language) }};">
+        {{ repo.language }}
+      </span>
+      <span *ngIf="repo.stars" class="mx-2">
+        <fa-icon [icon]="faStars"></fa-icon>
+        {{ repo.stars }}
+      </span>
+      <span *ngIf="repo.forks" class="mx-2">
+        <fa-icon [icon]="faFork"></fa-icon>
+        {{ repo.forks }}
+      </span>
+      <span class="text-muted" class="mx-2">
+        Updated on {{ repo.last_update }}
+      </span>
     </div>
   </div>
 </div>

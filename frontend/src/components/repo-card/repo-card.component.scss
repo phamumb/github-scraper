@@ -5,7 +5,9 @@
 
 .card {
   transition: transform 0.2s ease;
+  box-shadow: 0 5px 15px rgba(154, 150, 156, 0.4);
 }
+
 
 .card-body {
   height: 200px;
