@@ -31,4 +31,8 @@ export class RepoCardComponent implements OnInit {
       }
   }
 
+  cardClick() {
+    window.location.href=`https://github.com/${this.repo.username}/${this.repo.repository_name}`
+  }
+
 }

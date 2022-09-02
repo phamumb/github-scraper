@@ -1,21 +1,2 @@
-<div class="contaier-fluid m-2">
-  <div class="row">
-    <div class="col-md-4">
-      <select class="form-select" aria-label="Default select example" (change)="onUserChange($event.target)" label="Username">
-        <option class="text-muted" [value]="" selected>Select a Github's username</option>
-        <option [value]="user.username" *ngFor="let user of users$ | async">{{user.username}}</option>
-      </select>
-    </div>
-    <div class="col-md-8">
-      <input class="form-control" (input)="onTextSearch($event.target)" placeholder="Search text">
-    </div>
-  </div>
-</div>
-
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-4" *ngFor="let repo of repositories$ | async">
-        <app-repo-card [repo]="repo"></app-repo-card>
-    </div>
-  </div>
-</div>
+<app-forms-bar [users]="users$ | async" (onUserChange)="onUserChange($event)"></app-forms-bar>
+<app-repository-list [repositories]="repositories$ | async" #list></app-repository-list>

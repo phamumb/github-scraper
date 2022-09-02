@@ -1,0 +1,12 @@
+.card:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.card {
+  transition: transform 0.2s ease;
+}
+
+.card-body {
+  height: 200px;
+}

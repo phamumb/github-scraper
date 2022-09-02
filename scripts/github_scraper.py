@@ -1,23 +1,26 @@
-import base64
 from pprint import pprint
 import sqlite3
 import requests
 from bs4 import BeautifulSoup
+import yaml
 
 # database connection
 con = None
+# config
+config = None
+
+default_db_path = "../db/github.db"
+config_file = "config.yaml"
 
 def create_connection(db_file_path):
     try:
         con = sqlite3.connect(db_file_path)
-    except Error as e:
-        print(e)
+    except:
+        print("Can't connect to database")
     return con
 
-
-def scrape_github_repos(url):
+def scrape_github_repos(username):
     pageNum = 1
-    username = "prydonius"
     url = f"https://github.com/{username}?tab=repositories&page="
     repositories = get_repositories(url + str(pageNum))
     while(len(repositories) > 0):
@@ -71,16 +74,24 @@ def create_table():
     cur.execute(sql)
     con.commit()
 
+def load_config():
+    global config
+    with open(config_file, "r") as yamlfile:
+        config = yaml.load(yamlfile, Loader=yaml.FullLoader)
+
 
 def main():
-    db_path = "../db/github.db"
     global con
-    con = create_connection(db_path)
+    # load config file
+    load_config()
+    # create/connect to database SQLite
+    con = create_connection(config['db_path'] if 'db_path' in config else default_db_path)
     with con:
         # create 'Repository' table if not exist
         create_table()
         # run scrape function
-        scrape_github_repos("")
+        for user in config['github_users']:
+            scrape_github_repos(user)
 
 
 if __name__ == '__main__':

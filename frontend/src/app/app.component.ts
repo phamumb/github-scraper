@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { RepositoryListComponent } from 'src/components/repository-list/repository-list.component';
 import { ContextService } from 'src/services/context.service';
 
 @Component({
@@ -8,6 +9,7 @@ import { ContextService } from 'src/services/context.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  @ViewChild("list") list!: RepositoryListComponent;
   users$: Observable<any> = of([]);
   repositories$: Observable<any> = of([]);
 
@@ -15,11 +17,8 @@ export class AppComponent {
     this.users$ = this.context.getAllUsers();
   }
 
-  onUserChange(event: any) {
-    this.repositories$ = this.context.getAllRepositoriesByUsername(event.value);
-  }
-
-  onTextSearch(text: any) {
-    console.log(text.value);
+  onUserChange(user: string) {
+    this.repositories$ = this.context.getAllRepositoriesByUsername(user);
+    this.list.reset();
   }
 }

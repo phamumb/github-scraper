@@ -6,11 +6,15 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { RepoCardComponent } from '../components/repo-card/repo-card.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FormsBarComponent } from '../components/forms-bar/forms-bar.component';
+import { RepositoryListComponent } from '../components/repository-list/repository-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RepoCardComponent,
+    FormsBarComponent,
+    RepositoryListComponent,
   ],
   imports: [
     FormsModule,
